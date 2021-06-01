@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Header from './header';
 
 export interface ICategory {
     name: string;
@@ -11,17 +12,17 @@ export interface IGame {
     categories: Array<ICategory>;
 };
 const App = () => {
+    
     const [games, setGames] = useState<IGame[]>([
         {
             name: "Loic",
-            age: 24,
+            categories: [{ name: "o", id: 24 }],
         },
         {
             name: "Lilly",
-            age: 2,
+            categories: [{ name: "", id: 24 }],
         },
     ]);
-
     return (
         <div>
             <h1>Users list</h1>
@@ -30,7 +31,7 @@ const App = () => {
                     return (
                         <li key={game.name}>
                             {game.name}
-                            {game.categories}
+                         
                         </li>
                     );
                 })}
