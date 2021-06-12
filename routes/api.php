@@ -29,7 +29,6 @@ Route::delete('/games/{id}', "GameController@delete");
 
 Route::post('/games', "GameController@add");
 
-
 Route::get('/categories', "CategoryController@index");
 
 Route::get('/categories/{gameId}', "CategoryController@get");
@@ -39,7 +38,3 @@ Route::post('/categories', "CategoryController@add");
 Route::delete('/games/{id}', "CategoryController@delete");
 
 Route::post('/categories/{categoryId}', "CategoryController@edit");
-
-
-
-

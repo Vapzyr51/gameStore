@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+    HashRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useHistory,
+} from "react-router-dom";
 import Header from "./header";
 import LoginPage from "./login";
 

@@ -2076,12 +2076,14 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js")); //import "./css.css";
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js"); //import "./css.css";
 
 
 var constants = __importStar(__webpack_require__(/*! ../constants/Urls */ "./resources/js/constants/Urls.ts"));
 
-var Login = function Login() {
+var LoginPage = function LoginPage() {
   var _a = react_1.useState(""),
       name = _a[0],
       setName = _a[1];
@@ -2098,18 +2100,37 @@ var Login = function Login() {
       isSignUpMenu = _d[0],
       setIsSignUpMenu = _d[1];
 
+  var history = react_router_dom_1.useHistory();
+
   function onLogIn(e) {
-    e.prevent["default"]();
+    e.preventDefault(); // history.push("/home"); // for tests purpose
+
     var data = {
       name: name,
       password: password,
       email: email
     };
-    axios_1["default"].post(constants.serverURL, []);
+    axios_1["default"].post(constants.serverURL + "/", []).then(function (res) {
+      if (res.status === 200) {
+        history.push("/home");
+      }
+    });
   }
 
   function onSwap(e) {
     setIsSignUpMenu(!isSignUpMenu);
+  }
+
+  function onInputChange(event, field) {
+    var value = !(event && event.target && event.target.value) ? "" : event.target.value;
+
+    if (field === "name") {
+      setName(value);
+    } else if (field === "password") {
+      setPassword(value);
+    } else {
+      setEmail(value);
+    }
   }
 
   return react_1["default"].createElement("div", {
@@ -2142,6 +2163,9 @@ var Login = function Login() {
     id: "name",
     name: "acc_name",
     value: name,
+    onChange: function onChange(event) {
+      onInputChange(event, "name");
+    },
     placeholder: "Nom"
   })), react_1["default"].createElement("div", {
     className: "form-field"
@@ -2151,6 +2175,9 @@ var Login = function Login() {
     id: "password",
     name: "password",
     value: password,
+    onChange: function onChange(event) {
+      return onInputChange(event, "password");
+    },
     placeholder: "Mot de passe"
   })), react_1["default"].createElement("div", {
     className: "form-field"
@@ -2160,6 +2187,9 @@ var Login = function Login() {
     id: "email",
     name: "email",
     value: email,
+    onChange: function onChange(event) {
+      return onInputChange(event, "email");
+    },
     placeholder: "Email"
   })), react_1["default"].createElement("div", {
     className: "form-field"
@@ -2169,7 +2199,7 @@ var Login = function Login() {
   }, isSignUpMenu ? "S'inscrire" : "Se connecter")))))));
 };
 
-exports.default = Login;
+exports.default = LoginPage;
 
 /***/ }),
 

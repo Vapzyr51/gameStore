@@ -1,25 +1,49 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 //import "./css.css";
 import * as constants from "../constants/Urls";
+import LoginProps from "../types/login";
 
-const Login = () => {
+const LoginPage: React.FunctionComponent<LoginProps> = () => {
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [isSignUpMenu, setIsSignUpMenu] = useState<boolean>(false);
+    let history = useHistory();
+
     function onLogIn(e: any) {
-        e.prevent.default();
+        e.preventDefault();
+        // history.push("/home"); // for tests purpose
         const data = {
             name: name,
             password: password,
             email: email,
         };
-        axios.post(constants.serverURL, []);
+        axios.post(constants.serverURL + "/", []).then((res) => {
+            if (res.status === 200) {
+                history.push("/home");
+            }
+        });
     }
+
     function onSwap(e: any) {
         setIsSignUpMenu(!isSignUpMenu);
     }
+
+    function onInputChange(event: any, field: string) {
+        const value = !(event && event.target && event.target.value)
+            ? ""
+            : event.target.value;
+        if (field === "name") {
+            setName(value);
+        } else if (field === "password") {
+            setPassword(value);
+        } else {
+            setEmail(value);
+        }
+    }
+
     return (
         <div className="login-page">
             <div className="login-banner">
@@ -55,6 +79,9 @@ const Login = () => {
                                         id="name"
                                         name="acc_name"
                                         value={name}
+                                        onChange={(event) => {
+                                            onInputChange(event, "name");
+                                        }}
                                         placeholder="Nom"
                                     />
                                 </div>
@@ -66,6 +93,9 @@ const Login = () => {
                                     id="password"
                                     name="password"
                                     value={password}
+                                    onChange={(event) =>
+                                        onInputChange(event, "password")
+                                    }
                                     placeholder="Mot de passe"
                                 />
                             </div>
@@ -76,6 +106,9 @@ const Login = () => {
                                     id="email"
                                     name="email"
                                     value={email}
+                                    onChange={(event) =>
+                                        onInputChange(event, "email")
+                                    }
                                     placeholder="Email"
                                 />
                             </div>
@@ -96,4 +129,4 @@ const Login = () => {
         </div>
     );
 };
-export default Login;
+export default LoginPage;
