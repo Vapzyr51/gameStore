@@ -1,42 +1,50 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './header';
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Header from "./header";
+import LoginPage from "./login";
 
 export interface ICategory {
     name: string;
     id: number;
-};
+}
 
 export interface IGame {
     name: string;
     categories: Array<ICategory>;
-};
+}
 const App = () => {
-    
-    const [games, setGames] = useState<IGame[]>([
-        {
-            name: "Loic",
-            categories: [{ name: "o", id: 24 }],
-        },
-        {
-            name: "Lilly",
-            categories: [{ name: "", id: 24 }],
-        },
-    ]);
+    const [isLogin, setIsLogin] = useState(false);
     return (
-        <div>
-            <h1>Users list</h1>
-            <ul>
-                {games.map((game: IGame) => {
-                    return (
-                        <li key={game.name}>
-                            {game.name}
-                         
-                        </li>
-                    );
-                })}
-            </ul>
-        </div>
+        <Router>
+            <div className="main-page">
+                {isLogin && (
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/home">Accueil</Link>
+                            </li>
+                            <li>
+                                <Link to="/login">Connexion</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                )}
+                <Switch>
+                    <Route path="/about">
+                        <></>
+                    </Route>
+                    <Route path="/index">
+                        <></>
+                    </Route>
+                    <Route path="/login">
+                        <LoginPage />
+                    </Route>
+                    <Route path="/">
+                        <></>
+                    </Route>
+                </Switch>
+            </div>
+        </Router>
     );
 };
 

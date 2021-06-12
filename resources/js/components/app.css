@@ -1,0 +1,119 @@
+
+
+
+.submit-login-button {
+    border-radius: 30px;
+    height: 54px;
+    width: 232px;
+    color: white;
+    background-color: #3bb497;
+    box-shadow: 0 12px 24px rgba(34,51,49,.13);
+    cursor: pointer;
+    font-family: "GothamPro Medium",serif;
+    font-size: 0.9rem;
+}
+
+.submit-login-button:hover{
+    box-shadow: none;
+}
+
+.form-field {
+    width: auto;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-banner {
+    background-image: linear-gradient(253deg,#3ba5b4 0,#38ba8a 100%);
+    color: #3bb497;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.login-form .input-field{
+    height: 54px;
+    width: 232px;
+    min-height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-family: "GothamPro Medium",serif;
+    background: #eef5f3;
+    outline: 0;
+}
+
+.login-form .input-field:focus{
+    background: #fff;
+    border: 1px solid #e1eae7;
+}
+
+.main-page {
+    display: flex;
+}
+
+.login-page {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+}
+
+body, html div#app {
+    height: 100%;
+    width: 100%;
+  }
+
+
+.login-banner button{
+    height: 54px;
+    width: 232px;
+    min-height: 50px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 12px 24px rgba(34,51,49,.13);
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-family: "GothamPro Medium",serif;
+}
+
+.centered-button {
+    display: flex;
+    justify-content: center;  
+}
+
+.centered-form {
+    height: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-family: "GothamPro Medium",serif;
+}
+
+.description {
+    width: auto;
+    text-align: center;
+    color: white;
+}
+
+.login-banner button:hover{
+    box-shadow: none;
+}
