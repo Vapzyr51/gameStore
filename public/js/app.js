@@ -1936,6 +1936,126 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/components/header.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/components/header.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var Header = function Header() {
+  return react_1["default"].createElement("nav", {
+    className: "header-menu"
+  }, react_1["default"].createElement("div", {
+    className: "header-menu-list"
+  }, react_1["default"].createElement(react_router_dom_1.Link, {
+    className: "header-menu-item",
+    to: "/games"
+  }, "Les jeux"), react_1["default"].createElement(react_router_dom_1.Link, {
+    className: "header-menu-item",
+    to: "/games"
+  }, "Mon r\xE9pertoire"), react_1["default"].createElement(react_router_dom_1.Link, {
+    className: "header-menu-item",
+    to: "/profile"
+  }, "Mon profil"), react_1["default"].createElement(react_router_dom_1.Link, {
+    className: "header-menu-item",
+    to: "/profile"
+  }, "Se d\xE9connecter")));
+};
+
+exports.default = Header;
+
+/***/ }),
+
+/***/ "./resources/js/components/home.tsx":
+/*!******************************************!*\
+  !*** ./resources/js/components/home.tsx ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var header_1 = __importDefault(__webpack_require__(/*! ./header */ "./resources/js/components/header.tsx"));
+
+var HomePage = function HomePage() {
+  console.log("???");
+
+  var _a = react_1.useState(false),
+      isLogin = _a[0],
+      setIsLogin = _a[1];
+
+  return react_1["default"].createElement("div", null, react_1["default"].createElement(header_1["default"], null), react_1["default"].createElement("div", {
+    className: "main-page"
+  }, "ma page principale"));
+};
+
+exports.default = HomePage;
+
+/***/ }),
+
 /***/ "./resources/js/components/index.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/components/index.tsx ***!
@@ -1995,26 +2115,22 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 
 var login_1 = __importDefault(__webpack_require__(/*! ./login */ "./resources/js/components/login.tsx"));
 
+var home_1 = __importDefault(__webpack_require__(/*! ./home */ "./resources/js/components/home.tsx"));
+
 var App = function App() {
   var _a = react_1.useState(false),
       isLogin = _a[0],
       setIsLogin = _a[1];
 
-  return react_1["default"].createElement(react_router_dom_1.HashRouter, null, react_1["default"].createElement("div", {
-    className: "main-page"
-  }, isLogin && react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, react_1["default"].createElement("li", null, react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/home"
-  }, "Accueil")), react_1["default"].createElement("li", null, react_1["default"].createElement(react_router_dom_1.Link, {
-    to: "/login"
-  }, "Connexion")))), react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
+  return react_1["default"].createElement(react_router_dom_1.HashRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/about"
   }, react_1["default"].createElement(react_1["default"].Fragment, null)), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/index"
-  }, react_1["default"].createElement(react_1["default"].Fragment, null)), react_1["default"].createElement(react_router_dom_1.Route, {
+  }, react_1["default"].createElement(home_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/login"
   }, react_1["default"].createElement(login_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/"
-  }, react_1["default"].createElement(react_1["default"].Fragment, null)))));
+  }, react_1["default"].createElement(react_1["default"].Fragment, null))));
 };
 
 exports.default = App;
@@ -2301,7 +2417,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\r\n\r\n\r\n.submit-login-button {\r\n    border-radius: 30px;\r\n    height: 54px;\r\n    width: 232px;\r\n    color: white;\r\n    background-color: #3bb497;\r\n    box-shadow: 0 12px 24px rgba(34,51,49,.13);\r\n    cursor: pointer;\r\n    font-family: \"GothamPro Medium\",serif;\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.submit-login-button:hover{\r\n    box-shadow: none;\r\n}\r\n\r\n.form-field {\r\n    width: auto;\r\n    margin: 20px;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.login-banner {\r\n    background-image: linear-gradient(253deg,#3ba5b4 0,#38ba8a 100%);\r\n    color: #3bb497;\r\n    width: 30vw;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n}\r\n\r\n.login-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    height: 100%;\r\n}\r\n\r\n.login-form .input-field{\r\n    height: 54px;\r\n    width: 232px;\r\n    min-height: 50px;\r\n    background-color: white;\r\n    border-radius: 30px;\r\n    text-align: center;\r\n    font-size: 0.9rem;\r\n    font-family: \"GothamPro Medium\",serif;\r\n    background: #eef5f3;\r\n    outline: 0;\r\n}\r\n\r\n.login-form .input-field:focus{\r\n    background: #fff;\r\n    border: 1px solid #e1eae7;\r\n}\r\n\r\n.main-page {\r\n    display: flex;\r\n}\r\n\r\n.login-page {\r\n    display: flex;\r\n    width: 100vw;\r\n    height: 100vh;\r\n}\r\n\r\n.login-section {\r\n    display: flex;\r\n    justify-content: center;\r\n    width: 70vw;\r\n}\r\n\r\nbody, html div#app {\r\n    height: 100%;\r\n    width: 100%;\r\n  }\r\n\r\n\r\n.login-banner button{\r\n    height: 54px;\r\n    width: 232px;\r\n    min-height: 50px;\r\n    background-color: white;\r\n    border-radius: 30px;\r\n    box-shadow: 0 12px 24px rgba(34,51,49,.13);\r\n    text-align: center;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    font-family: \"GothamPro Medium\",serif;\r\n}\r\n\r\n.centered-button {\r\n    display: flex;\r\n    justify-content: center;  \r\n}\r\n\r\n.centered-form {\r\n    height: 100%;\r\n}\r\n\r\n.title {\r\n    text-align: center;\r\n    font-size: 1.1rem;\r\n    font-family: \"GothamPro Medium\",serif;\r\n}\r\n\r\n.description {\r\n    width: auto;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n\r\n.login-banner button:hover{\r\n    box-shadow: none;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n\r\n\r\n.submit-login-button {\r\n    border-radius: 30px;\r\n    height: 54px;\r\n    width: 232px;\r\n    color: white;\r\n    background-color: #3bb497;\r\n    box-shadow: 0 12px 24px rgba(34,51,49,.13);\r\n    cursor: pointer;\r\n    font-family: \"GothamPro Medium\",serif;\r\n    font-size: 0.9rem;\r\n}\r\n\r\n.submit-login-button:hover{\r\n    box-shadow: none;\r\n}\r\n\r\n.form-field {\r\n    width: auto;\r\n    margin: 20px;\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n\r\n.login-banner {\r\n    background-image: linear-gradient(253deg,#3ba5b4 0,#38ba8a 100%);\r\n    color: #3bb497;\r\n    width: 30vw;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n}\r\n\r\n.login-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    height: 100%;\r\n}\r\n\r\n.login-form .input-field{\r\n    height: 54px;\r\n    width: 232px;\r\n    min-height: 50px;\r\n    background-color: white;\r\n    border-radius: 30px;\r\n    text-align: center;\r\n    font-size: 0.9rem;\r\n    font-family: \"GothamPro Medium\",serif;\r\n    background: #eef5f3;\r\n    outline: 0;\r\n}\r\n\r\n.login-form .input-field:focus{\r\n    background: #fff;\r\n    border: 1px solid #e1eae7;\r\n}\r\n\r\n.main-page {\r\n    display: flex;\r\n}\r\n\r\n.login-page {\r\n    display: flex;\r\n    width: 100vw;\r\n    height: 100vh;\r\n}\r\n\r\n.login-section {\r\n    display: flex;\r\n    justify-content: center;\r\n    width: 70vw;\r\n}\r\n\r\nbody, html div#app {\r\n    height: 100%;\r\n    width: 100%;\r\n  }\r\n\r\n\r\n.login-banner button{\r\n    height: 54px;\r\n    width: 232px;\r\n    min-height: 50px;\r\n    background-color: white;\r\n    border-radius: 30px;\r\n    box-shadow: 0 12px 24px rgba(34,51,49,.13);\r\n    text-align: center;\r\n    font-size: 0.9rem;\r\n    cursor: pointer;\r\n    font-family: \"GothamPro Medium\",serif;\r\n}\r\n\r\n.centered-button {\r\n    display: flex;\r\n    justify-content: center;  \r\n}\r\n\r\n.centered-form {\r\n    height: 100%;\r\n}\r\n\r\n.title {\r\n    text-align: center;\r\n    font-size: 1.1rem;\r\n    font-family: \"GothamPro Medium\",serif;\r\n}\r\n\r\n.description {\r\n    width: auto;\r\n    text-align: center;\r\n    color: white;\r\n}\r\n\r\n.login-banner button:hover{\r\n    box-shadow: none;\r\n}\r\n\r\n.main-page {\r\n    display: flex;\r\n    width: 100vw;\r\n    height: calc(100vh - 50px);\r\n}\r\n\r\n.header-menu{\r\n    /* height: 10vh; */\r\n    height: 50px;\r\n    background-color: #3bb497;\r\n    color: white;\r\n    display: flex;\r\n    justify-content: flex-end;\r\n}\r\n\r\n.header-menu-list{\r\n    display: flex;\r\n}\r\n\r\n.header-menu-item{\r\n    display: flex;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n    margin-left: 20px;\r\n    margin-right: 10px;\r\n    font-weight: bold;\r\n}\r\n\r\n.header-menu-item:hover{\r\n    color: #b4513b;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

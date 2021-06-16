@@ -6,8 +6,8 @@ import {
     Link,
     useHistory,
 } from "react-router-dom";
-import Header from "./header";
 import LoginPage from "./login";
+import HomePage from "./home";
 
 export interface ICategory {
     name: string;
@@ -22,34 +22,20 @@ const App = () => {
     const [isLogin, setIsLogin] = useState(false);
     return (
         <Router>
-            <div className="main-page">
-                {isLogin && (
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/home">Accueil</Link>
-                            </li>
-                            <li>
-                                <Link to="/login">Connexion</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                )}
-                <Switch>
-                    <Route path="/about">
-                        <></>
-                    </Route>
-                    <Route path="/index">
-                        <></>
-                    </Route>
-                    <Route path="/login">
-                        <LoginPage />
-                    </Route>
-                    <Route path="/">
-                        <></>
-                    </Route>
-                </Switch>
-            </div>
+            <Switch>
+                <Route path="/about">
+                    <></>
+                </Route>
+                <Route path="/index">
+                    <HomePage />
+                </Route>
+                <Route path="/login">
+                    <LoginPage />
+                </Route>
+                <Route path="/">
+                    <></>
+                </Route>
+            </Switch>
         </Router>
     );
 };

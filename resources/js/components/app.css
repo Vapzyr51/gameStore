@@ -117,3 +117,35 @@ body, html div#app {
 .login-banner button:hover{
     box-shadow: none;
 }
+
+.main-page {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 50px);
+}
+
+.header-menu{
+    /* height: 10vh; */
+    height: 50px;
+    background-color: #3bb497;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-menu-list{
+    display: flex;
+}
+
+.header-menu-item{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.header-menu-item:hover{
+    color: #b4513b;
+}
