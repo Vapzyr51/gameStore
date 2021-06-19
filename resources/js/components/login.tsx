@@ -20,7 +20,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
         axios.get("/sanctum/csrf-cookie").then((response) => {
             // Login...
             let formdata = new FormData();
-            formdata.append("name", name);
+            //  formdata.append("name", "jean");
             formdata.append("password", password);
             formdata.append("email", email);
             axios.post(constants.serverURL + "login", formdata).then((res) => {
@@ -80,13 +80,13 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                                     <input
                                         className="input-field"
                                         type="text"
-                                        id="email"
-                                        name="email"
-                                        value={email}
-                                        onChange={(event) =>
-                                            onInputChange(event, "email")
-                                        }
-                                        placeholder="Email"
+                                        id="name"
+                                        name="acc_name"
+                                        value={name}
+                                        onChange={(event) => {
+                                            onInputChange(event, "name");
+                                        }}
+                                        placeholder="Nom"
                                     />
                                 </div>
                             )}
@@ -94,13 +94,13 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                                 <input
                                     className="input-field"
                                     type="text"
-                                    id="name"
-                                    name="acc_name"
-                                    value={name}
-                                    onChange={(event) => {
-                                        onInputChange(event, "name");
-                                    }}
-                                    placeholder="Nom"
+                                    id="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(event) =>
+                                        onInputChange(event, "email")
+                                    }
+                                    placeholder="Email"
                                 />
                             </div>
                             <div className="form-field">

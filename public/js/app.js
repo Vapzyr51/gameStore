@@ -2224,8 +2224,8 @@ var LoginPage = function LoginPage() {
 
     axios_1["default"].get("/sanctum/csrf-cookie").then(function (response) {
       // Login...
-      var formdata = new FormData();
-      formdata.append("name", name);
+      var formdata = new FormData(); //  formdata.append("name", "jean");
+
       formdata.append("password", password);
       formdata.append("email", email);
       axios_1["default"].post(constants.serverURL + "login", formdata).then(function (res) {
@@ -2279,18 +2279,6 @@ var LoginPage = function LoginPage() {
   }, react_1["default"].createElement("input", {
     className: "input-field",
     type: "text",
-    id: "email",
-    name: "email",
-    value: email,
-    onChange: function onChange(event) {
-      return onInputChange(event, "email");
-    },
-    placeholder: "Email"
-  })), react_1["default"].createElement("div", {
-    className: "form-field"
-  }, react_1["default"].createElement("input", {
-    className: "input-field",
-    type: "text",
     id: "name",
     name: "acc_name",
     value: name,
@@ -2298,6 +2286,18 @@ var LoginPage = function LoginPage() {
       onInputChange(event, "name");
     },
     placeholder: "Nom"
+  })), react_1["default"].createElement("div", {
+    className: "form-field"
+  }, react_1["default"].createElement("input", {
+    className: "input-field",
+    type: "text",
+    id: "email",
+    name: "email",
+    value: email,
+    onChange: function onChange(event) {
+      return onInputChange(event, "email");
+    },
+    placeholder: "Email"
   })), react_1["default"].createElement("div", {
     className: "form-field"
   }, react_1["default"].createElement("input", {
