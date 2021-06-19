@@ -15,26 +15,28 @@ use App\Http\Controllers\GameController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/games', "GameController@index");
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/games', "App\Http\Controllers\GameController@index");
 
-Route::get('/games/{id}', "GameController@index");
+    Route::get('/games/{id}', "App\Http\Controllers\GameController@index");
 
-Route::post('/games/{id}', "GameController@edit");
+    Route::post('/games/{id}', "App\Http\Controllers\GameController@edit");
 
-Route::delete('/games/{id}', "GameController@delete");
+    Route::delete('/games/{id}', "App\Http\Controllers\GameController@delete");
 
-Route::post('/games', "GameController@add");
+    Route::post('/games', "App\Http\Controllers\GameController@add");
 
-Route::get('/categories', "CategoryController@index");
+    Route::get('/categories', "App\Http\Controllers\CategoryController@index");
 
-Route::get('/categories/{gameId}', "CategoryController@get");
+    Route::get('/categories/{gameId}', "App\Http\Controllers\CategoryController@get");
 
-Route::post('/categories', "CategoryController@add");
+    Route::post('/categories', "App\Http\Controllers\CategoryController@add");
 
-Route::delete('/games/{id}', "CategoryController@delete");
+    Route::delete('/games/{id}', "App\Http\Controllers\CategoryController@delete");
 
-Route::post('/categories/{categoryId}', "CategoryController@edit");
+    Route::post('/categories/{categoryId}', "App\Http\Controllers\CategoryController@edit");
+});

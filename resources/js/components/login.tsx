@@ -15,15 +15,19 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
     function onLogIn(e: any) {
         e.preventDefault();
         // history.push("/home"); // for tests purpose
-        const data = {
-            name: name,
-            password: password,
-            email: email,
-        };
-        axios.post(constants.serverURL + "/", []).then((res) => {
-            if (res.status === 200) {
-                history.push("/home");
-            }
+
+        //initialize CRSF protection for token
+        axios.get("/sanctum/csrf-cookie").then((response) => {
+            // Login...
+            let formdata = new FormData();
+            formdata.append("name", name);
+            formdata.append("password", password);
+            formdata.append("email", email);
+            axios.post(constants.serverURL + "login", formdata).then((res) => {
+                if (res.status === 200) {
+                    history.push("/home");
+                }
+            });
         });
     }
 
@@ -76,16 +80,29 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                                     <input
                                         className="input-field"
                                         type="text"
-                                        id="name"
-                                        name="acc_name"
-                                        value={name}
-                                        onChange={(event) => {
-                                            onInputChange(event, "name");
-                                        }}
-                                        placeholder="Nom"
+                                        id="email"
+                                        name="email"
+                                        value={email}
+                                        onChange={(event) =>
+                                            onInputChange(event, "email")
+                                        }
+                                        placeholder="Email"
                                     />
                                 </div>
                             )}
+                            <div className="form-field">
+                                <input
+                                    className="input-field"
+                                    type="text"
+                                    id="name"
+                                    name="acc_name"
+                                    value={name}
+                                    onChange={(event) => {
+                                        onInputChange(event, "name");
+                                    }}
+                                    placeholder="Nom"
+                                />
+                            </div>
                             <div className="form-field">
                                 <input
                                     className="input-field"
@@ -97,19 +114,6 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                                         onInputChange(event, "password")
                                     }
                                     placeholder="Mot de passe"
-                                />
-                            </div>
-                            <div className="form-field">
-                                <input
-                                    className="input-field"
-                                    type="text"
-                                    id="email"
-                                    name="email"
-                                    value={email}
-                                    onChange={(event) =>
-                                        onInputChange(event, "email")
-                                    }
-                                    placeholder="Email"
                                 />
                             </div>
                             <div className="form-field">

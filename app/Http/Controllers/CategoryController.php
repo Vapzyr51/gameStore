@@ -11,7 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class GameController extends Controller
+class CategoryController extends Controller
 {
 
     /**
@@ -27,7 +27,7 @@ class GameController extends Controller
         return response($Category, 200, ['Content-Type' => 'application/json']);
     }
 
-        /**
+    /**
      * Returns the different categories linked to a given Category
      *
      * @param  int  $id
@@ -38,7 +38,7 @@ class GameController extends Controller
         $gameInfos = Category::get();
         return response($gameInfos, 200, ['Content-Type' => 'application/json']);
     }
-    
+
     /**
      *  Register a new category in the database
      * 
@@ -47,7 +47,7 @@ class GameController extends Controller
     public function add(Request $request, int $id)
     {
         $page = $request->input('page');
-       // Category::add();
+        // Category::add();
         $message = "game added succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
@@ -60,12 +60,12 @@ class GameController extends Controller
     public function delete(Request $request, int $id)
     {
         $page = $request->input('page');
-       // Category::add();
+        // Category::add();
         $message = "game deleted succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
 
-        /**
+    /**
      *  Edit a category in the database
      * 
      * @param  int  $id
@@ -73,9 +73,8 @@ class GameController extends Controller
     public function edit(Request $request, int $id)
     {
         $page = $request->input('page');
-       // Category::add();
+        // Category::add();
         $message = "game added succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
-    
 }

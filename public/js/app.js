@@ -2220,16 +2220,19 @@ var LoginPage = function LoginPage() {
 
   function onLogIn(e) {
     e.preventDefault(); // history.push("/home"); // for tests purpose
+    //initialize CRSF protection for token
 
-    var data = {
-      name: name,
-      password: password,
-      email: email
-    };
-    axios_1["default"].post(constants.serverURL + "/", []).then(function (res) {
-      if (res.status === 200) {
-        history.push("/home");
-      }
+    axios_1["default"].get("/sanctum/csrf-cookie").then(function (response) {
+      // Login...
+      var formdata = new FormData();
+      formdata.append("name", name);
+      formdata.append("password", password);
+      formdata.append("email", email);
+      axios_1["default"].post(constants.serverURL + "login", formdata).then(function (res) {
+        if (res.status === 200) {
+          history.push("/home");
+        }
+      });
     });
   }
 
@@ -2276,6 +2279,18 @@ var LoginPage = function LoginPage() {
   }, react_1["default"].createElement("input", {
     className: "input-field",
     type: "text",
+    id: "email",
+    name: "email",
+    value: email,
+    onChange: function onChange(event) {
+      return onInputChange(event, "email");
+    },
+    placeholder: "Email"
+  })), react_1["default"].createElement("div", {
+    className: "form-field"
+  }, react_1["default"].createElement("input", {
+    className: "input-field",
+    type: "text",
     id: "name",
     name: "acc_name",
     value: name,
@@ -2295,18 +2310,6 @@ var LoginPage = function LoginPage() {
       return onInputChange(event, "password");
     },
     placeholder: "Mot de passe"
-  })), react_1["default"].createElement("div", {
-    className: "form-field"
-  }, react_1["default"].createElement("input", {
-    className: "input-field",
-    type: "text",
-    id: "email",
-    name: "email",
-    value: email,
-    onChange: function onChange(event) {
-      return onInputChange(event, "email");
-    },
-    placeholder: "Email"
   })), react_1["default"].createElement("div", {
     className: "form-field"
   }, react_1["default"].createElement("button", {
@@ -2363,6 +2366,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

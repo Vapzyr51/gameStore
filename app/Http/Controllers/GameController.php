@@ -27,7 +27,7 @@ class GameController extends Controller
         return response($Game, 200, ['Content-Type' => 'application/json']);
     }
 
-        /**
+    /**
      * Returns the informations of a given game
      *
      * @param  int  $id
@@ -38,7 +38,7 @@ class GameController extends Controller
         $gameInfos = Game::get();
         return response($gameInfos, 200, ['Content-Type' => 'application/json']);
     }
-    
+
     /**
      *  Register a new game in the database
      * 
@@ -47,7 +47,7 @@ class GameController extends Controller
     public function add(Request $request, int $id)
     {
         $page = $request->input('page');
-       // Game::add();
+        // Game::add();
         $message = "game added succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
@@ -60,9 +60,8 @@ class GameController extends Controller
     public function delete(Request $request, int $id)
     {
         $page = $request->input('page');
-       // Game::add();
+        // Game::add();
         $message = "game deleted succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
-    
 }
