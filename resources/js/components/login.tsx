@@ -4,30 +4,45 @@ import { useHistory } from "react-router-dom";
 //import "./css.css";
 import * as constants from "../constants/Urls";
 import LoginProps from "../types/login";
+import { useAppDispatch } from './hooks';
 
 const LoginPage: React.FunctionComponent<LoginProps> = () => {
     const [name, setName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [isSignUpMenu, setIsSignUpMenu] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
     let history = useHistory();
 
     function onLogIn(e: any) {
         e.preventDefault();
-        // history.push("/home"); // for tests purpose
 
         //initialize CRSF protection for token
         axios.get("/sanctum/csrf-cookie").then((response) => {
             // Login...
             let formdata = new FormData();
-            //  formdata.append("name", "jean");
             formdata.append("password", password);
             formdata.append("email", email);
             axios.post(constants.serverURL + "login", formdata).then((res) => {
                 if (res.status === 200) {
+                    dispatch({ type: 'auth/login'});
                     history.push("/home");
                 }
             });
+        });
+    }
+
+    function onSubscribe(e: any) {
+        e.preventDefault();
+        // Subscription...
+        let formdata = new FormData();
+        formdata.append("username", name);
+        formdata.append("password", password);
+        formdata.append("email", email);
+        axios.post(constants.serverURL + "register", formdata).then((res) => {
+            if (res.status === 200) {
+                history.push("/subscription-success");
+            }
         });
     }
 
@@ -54,7 +69,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                 <div className="centered-button">
                     <div>
                         <p className="description">
-                            {isSignUpMenu
+                            {!isSignUpMenu
                                 ? " Vous n'avez pas encore de compte ?"
                                 : "Vous avez déjà un compte ?"}
                         </p>
@@ -65,7 +80,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                 </div>
             </div>
             <div className="login-section">
-                <form onSubmit={onLogIn}>
+                <form onSubmit={!isSignUpMenu ? onLogIn : onSubscribe}>
                     <div className="centered-form">
                         <div className="login-form">
                             <div className="form-field">

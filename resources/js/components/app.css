@@ -144,6 +144,7 @@ body, html div#app {
     margin-left: 20px;
     margin-right: 10px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .header-menu-item:hover{

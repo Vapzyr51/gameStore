@@ -6,14 +6,15 @@ import * as constants from "../constants/Urls";
 import LoginProps from "../types/login";
 import Header from "./header";
 
-const HomePage = () => {
-    const [isLogin, setIsLogin] = useState(false);
+const AfterSubscriptionPage = () => {
     return (
         <div>
-            <Header />
-            <div className="main-page">ma page principale</div>
+            <div className="main-page">
+                Bienvenue ! Votre compte a bien été créé ! Un e-mail vous a été
+                envoyé à l'adresse renseignée pour confirmer votre compte !
+            </div>
         </div>
     );
 };
 
-export default HomePage;
+export default AfterSubscriptionPage;
