@@ -3429,6 +3429,161 @@ exports.default = exports.authentReducer.reducer;
 
 /***/ }),
 
+/***/ "./resources/js/components/collection.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/components/collection.tsx ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var header_1 = __importDefault(__webpack_require__(/*! ./header */ "./resources/js/components/header.tsx"));
+
+var CollectionPage = function CollectionPage() {
+  var _a = react_1.useState(false),
+      isLogin = _a[0],
+      setIsLogin = _a[1];
+
+  return react_1["default"].createElement("div", null, react_1["default"].createElement(header_1["default"], null), react_1["default"].createElement("div", {
+    className: "main-page"
+  }, "Ma collection :"));
+};
+
+exports.default = CollectionPage;
+
+/***/ }),
+
+/***/ "./resources/js/components/gameslist.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/gameslist.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js")); //import "./css.css";
+
+
+var constants = __importStar(__webpack_require__(/*! ../constants/Urls */ "./resources/js/constants/Urls.ts"));
+
+var header_1 = __importDefault(__webpack_require__(/*! ./header */ "./resources/js/components/header.tsx"));
+
+var GamesListPage = function GamesListPage() {
+  var _a = react_1.useState(null),
+      games = _a[0],
+      setGames = _a[1];
+
+  react_1.useEffect(function () {
+    // type the res variable here when I have the time to
+    axios_1["default"].get(constants.serverURL + "api/games").then(function (res) {
+      if (res.status === 200) {
+        setGames(res.data.games);
+      }
+    });
+  }, []);
+  return react_1["default"].createElement("div", null, react_1["default"].createElement(header_1["default"], null), react_1["default"].createElement("div", {
+    className: "main-page"
+  }, "Liste des jeux : "));
+};
+
+exports.default = GamesListPage;
+
+/***/ }),
+
 /***/ "./resources/js/components/header.tsx":
 /*!********************************************!*\
   !*** ./resources/js/components/header.tsx ***!
@@ -3459,6 +3614,7 @@ var Header = function Header() {
   var dispatch = hooks_1.useAppDispatch();
 
   function logout() {
+    //dispatching Logout action and redirecting...
     dispatch({
       type: 'auth/logout'
     });
@@ -3614,21 +3770,53 @@ var login_1 = __importDefault(__webpack_require__(/*! ./login */ "./resources/js
 
 var home_1 = __importDefault(__webpack_require__(/*! ./home */ "./resources/js/components/home.tsx"));
 
+var gameslist_1 = __importDefault(__webpack_require__(/*! ./gameslist */ "./resources/js/components/gameslist.tsx"));
+
+var collection_1 = __importDefault(__webpack_require__(/*! ./collection */ "./resources/js/components/collection.tsx"));
+
+var profile_1 = __importDefault(__webpack_require__(/*! ./profile */ "./resources/js/components/profile.tsx"));
+
 var subscription_1 = __importDefault(__webpack_require__(/*! ./subscription */ "./resources/js/components/subscription.tsx"));
+
+var privateroute_1 = __importDefault(__webpack_require__(/*! ./routing/privateroute */ "./resources/js/components/routing/privateroute.tsx"));
 
 var App = function App() {
   var isLogin = hooks_1.useAppSelector(function (state) {
     return state.auth.logged_in;
   });
   return react_1["default"].createElement(react_router_dom_1.HashRouter, null, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/about"
-  }, react_1["default"].createElement(react_1["default"].Fragment, null)), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/home"
-  }, react_1["default"].createElement(home_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/login"
-  }, react_1["default"].createElement(login_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
-    path: "/subscription-success"
-  }, react_1["default"].createElement(subscription_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
+  }, react_1["default"].createElement(login_1["default"], null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/about",
+    exact: true
+  }, react_1["default"].createElement(react_1["default"].Fragment, null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/home",
+    exact: true
+  }, react_1["default"].createElement(home_1["default"], null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/subscription-success",
+    exact: true
+  }, react_1["default"].createElement(subscription_1["default"], null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/games",
+    exact: true
+  }, react_1["default"].createElement(gameslist_1["default"], null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/collection",
+    exact: true
+  }, react_1["default"].createElement(collection_1["default"], null)), react_1["default"].createElement(privateroute_1["default"], {
+    isAuthenticated: isLogin,
+    authenticationPath: "/login",
+    path: "/profile",
+    exact: true
+  }, react_1["default"].createElement(profile_1["default"], null)), react_1["default"].createElement(react_router_dom_1.Route, {
     path: "*"
   }, !isLogin ? react_1["default"].createElement(react_router_dom_1.Redirect, {
     to: "/login"
@@ -3844,6 +4032,77 @@ exports.default = LoginPage;
 
 /***/ }),
 
+/***/ "./resources/js/components/profile.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/components/profile.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var header_1 = __importDefault(__webpack_require__(/*! ./header */ "./resources/js/components/header.tsx"));
+
+var ProfilePage = function ProfilePage() {
+  var _a = react_1.useState(false),
+      isLogin = _a[0],
+      setIsLogin = _a[1];
+
+  return react_1["default"].createElement("div", null, react_1["default"].createElement(header_1["default"], null), react_1["default"].createElement("div", {
+    className: "main-page"
+  }, "Mon profil : "));
+};
+
+exports.default = ProfilePage;
+
+/***/ }),
+
 /***/ "./resources/js/components/reducers.ts":
 /*!*********************************************!*\
   !*** ./resources/js/components/reducers.ts ***!
@@ -3871,6 +4130,79 @@ var rootReducer = redux_1.combineReducers({
   auth: authentifierSlice_1["default"]
 });
 exports.default = rootReducer;
+
+/***/ }),
+
+/***/ "./resources/js/components/routing/privateroute.tsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/routing/privateroute.tsx ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __rest = this && this.__rest || function (s, e) {
+  var t = {};
+
+  for (var p in s) {
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+  }
+
+  if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+  }
+  return t;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var react_router_1 = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+
+function ProtectedRoute(_a) {
+  var isAuthenticated = _a.isAuthenticated,
+      authenticationPath = _a.authenticationPath,
+      routeProps = __rest(_a, ["isAuthenticated", "authenticationPath"]);
+
+  if (isAuthenticated) {
+    return react_1["default"].createElement(react_router_1.Route, __assign({}, routeProps));
+  } else {
+    return react_1["default"].createElement(react_router_1.Redirect, {
+      to: {
+        pathname: authenticationPath
+      }
+    });
+  }
+}
+
+exports.default = ProtectedRoute;
+;
 
 /***/ }),
 

@@ -6,6 +6,7 @@ const Header = () => {
     let history = useHistory();
     const dispatch = useAppDispatch();
     function logout() {
+        //dispatching Logout action and redirecting...
         dispatch({type : 'auth/logout'});
         history.push("/logout");
     }
