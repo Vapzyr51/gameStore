@@ -7,14 +7,14 @@ import {
     Link,
     useHistory,
 } from "react-router-dom";
-import { useAppSelector } from './hooks';
-import LoginPage from "./login";
-import HomePage from "./home";
-import GamesListPage from "./gameslist";
-import CollectionPage from "./collection";
-import ProfilePage from "./profile";
-import AfterSubscriptionPage from "./subscription";
-import PrivateRoute from "./routing/privateroute";
+import { useAppSelector } from '../hooks';
+import LoginPage from "../login";
+import HomePage from "../home";
+import GamesListPage from "../gameslist";
+import CollectionPage from "../collection";
+import ProfilePage from "../profile";
+import AfterSubscriptionPage from "../subscription";
+import PrivateRoute from "./privateroute";
 
 const App = () => {
     const isLogin = useAppSelector((state) => state.auth.logged_in);

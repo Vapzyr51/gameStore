@@ -1,4 +1,4 @@
-import App from './index';
+import App from './routing/router';
 import ReactDOM from 'react-dom';
 import './app.css';
 import {
