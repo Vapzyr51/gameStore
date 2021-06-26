@@ -121,7 +121,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                             <div className="form-field">
                                 <input
                                     className="input-field"
-                                    type="text"
+                                    type="password"
                                     id="password"
                                     name="password"
                                     value={password}

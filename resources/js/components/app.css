@@ -26,7 +26,7 @@
 
 .login-banner {
     background-image: linear-gradient(253deg,#3ba5b4 0,#38ba8a 100%);
-    color: #3bb497;
+    color: #d1d4d4;
     width: 30vw;
     display: flex;
     flex-direction: column;
@@ -60,6 +60,17 @@
 
 .main-page {
     display: flex;
+}
+
+.main-title {
+    display: flex;
+    justify-content: center;
+}
+
+.main-page .centered-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 .login-page {

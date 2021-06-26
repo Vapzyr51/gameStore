@@ -6,12 +6,10 @@ import * as constants from "../constants/Urls";
 import LoginProps from "../types/login";
 import { Game, GameList } from "../types/games";
 import Header from "./header";
-import { render } from "react-dom";
-
-
+import Table from "./assets/table";
 
 const GamesListPage = () => {
-    const [games, setGames] = useState<GameList|null>(null);
+    const [games, setGames] = useState<GameList | null>(null);
 
     useEffect(() => {
         // type the res variable here when I have the time to
@@ -20,12 +18,40 @@ const GamesListPage = () => {
                 setGames(res.data.games);
             }
         });
-      }, []);
+    }, []);
 
     return (
         <div>
             <Header />
-            <div className="main-page">Liste des jeux : </div>
+            <div className="main-title">Liste des jeux :</div>
+            <div className="main-page">
+                <div className="centered-div">
+                <Table
+                    columns={[
+                        { title: "Nom", field: "name" },
+                        { title: "Studio", field: "studio" },
+                        {
+                            title: "Année de publication",
+                            field: "release_date",
+                            // type: "numeric",
+                        },
+                        {
+                            title: "Catégories",
+                            field: "categories",
+                        },
+                    ]}
+                    data={[
+                        {
+                            name: "Dragonica",
+                            studio: "Gpotato",
+                            release_date: 1987,
+                            categories: 63,
+                        },
+                    ]}
+                    title="Liste des jeux publiés"
+                />
+                </div>
+            </div>
         </div>
     );
 };
