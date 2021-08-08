@@ -14,7 +14,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
     const dispatch = useAppDispatch();
     let history = useHistory();
 
-    function onLogIn(e: any) {
+    function onLogin(e: any) {
         e.preventDefault();
 
         //initialize CRSF protection for token
@@ -25,7 +25,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
             formdata.append("email", email);
             axios.post(constants.serverURL + "login", formdata).then((res) => {
                 if (res.status === 200) {
-                    dispatch({ type: 'auth/login'});
+                    dispatch({ type: 'auth/login', payload: res.data });
                     history.push("/home");
                 }
             });
@@ -80,7 +80,7 @@ const LoginPage: React.FunctionComponent<LoginProps> = () => {
                 </div>
             </div>
             <div className="login-section">
-                <form onSubmit={!isSignUpMenu ? onLogIn : onSubscribe}>
+                <form onSubmit={!isSignUpMenu ? onLogin : onSubscribe}>
                     <div className="centered-form">
                         <div className="login-form">
                             <div className="form-field">

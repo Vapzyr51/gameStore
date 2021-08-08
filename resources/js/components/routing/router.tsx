@@ -24,7 +24,6 @@ const App = () => {
                 <Route path="/login">
                     <LoginPage />
                 </Route>
-                {/*  */}
                 <PrivateRoute isAuthenticated={isLogin} authenticationPath="/login" path="/about" exact>
                     <></>
                 </PrivateRoute>
