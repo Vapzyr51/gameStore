@@ -1,9 +1,9 @@
 export interface Game {
     id: number,
     name: string,
+    studio: string,
+    categories: Array<number>,
     release_date: Date,
 };
 
-export interface GameList {
-    games: Array<Game>,
-};
+export type GameList = Array<Game>;

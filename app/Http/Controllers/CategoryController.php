@@ -22,8 +22,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $page = $request->input('page');
-        $Category = Category::get();
+        $Category = Category::paginate(10);
         return response($Category, 200, ['Content-Type' => 'application/json']);
     }
 
@@ -34,8 +33,7 @@ class CategoryController extends Controller
      */
     public function get(Request $request, int $id)
     {
-        $page = $request->input('page');
-        $gameInfos = Category::get();
+        $gameInfos = Category::findOrFail($id);
         return response($gameInfos, 200, ['Content-Type' => 'application/json']);
     }
 
@@ -44,10 +42,14 @@ class CategoryController extends Controller
      * 
      * @param  int  $id
      */
-    public function add(Request $request, int $id)
+    public function add(Request $request)
     {
-        $page = $request->input('page');
-        // Category::add();
+        $request->validate([
+            'name' => ['string', 'required'],
+        ]);
+        Category::create([
+            'name' => $request->input('name'),
+        ]);
         $message = "game added succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
@@ -59,9 +61,8 @@ class CategoryController extends Controller
      */
     public function delete(Request $request, int $id)
     {
-        $page = $request->input('page');
-        // Category::add();
-        $message = "game deleted succesfully";
+        Category::findOrFail($id)->delete();
+        $message = "category deleted succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
 
@@ -72,9 +73,13 @@ class CategoryController extends Controller
      */
     public function edit(Request $request, int $id)
     {
-        $page = $request->input('page');
-        // Category::add();
-        $message = "game added succesfully";
+        $request->validate([
+            'name' => ['string', 'required'],
+        ]);
+        Category::findOrFail($id)->update([
+            'name' => $request->input('name'),
+        ]);
+        $message = "category updated succesfully";
         return response($message, 200, ['Content-Type' => 'application/json']);
     }
 }

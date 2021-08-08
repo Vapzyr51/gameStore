@@ -9,13 +9,31 @@ import Header from "./header";
 import Table from "./assets/table";
 
 const GamesListPage = () => {
-    const [games, setGames] = useState<GameList | null>(null);
+    const [games, setGames] = useState<GameList>([]);
+    const [page, setPage ] = useState<number>(0);
+    const [totalCount, setTotalCount] = useState<number>(0);
+
+    function onChangePage(nextPage: number, pageSize: number) {
+        axios.get(constants.serverURL + "api/games" + "?page=" + nextPage).then((res) => {
+            if (res.status === 200) {
+                if (res.data && res.data.data) {
+                    setGames(res.data.data);
+                    setPage(res.data.current_page);
+                }
+            }
+        });
+    }
 
     useEffect(() => {
         // type the res variable here when I have the time to
         axios.get(constants.serverURL + "api/games").then((res) => {
             if (res.status === 200) {
-                setGames(res.data.games);
+                if (res.data && res.data.data) {
+                    setGames(res.data.data);
+                    setPage(res.data.current_page);
+                    setTotalCount(res.data.total);
+                }
+                console.log(res.data.games, res);
             }
         });
     }, []);
@@ -40,15 +58,11 @@ const GamesListPage = () => {
                             field: "categories",
                         },
                     ]}
-                    data={[
-                        {
-                            name: "Dragonica",
-                            studio: "Gpotato",
-                            release_date: 1987,
-                            categories: 63,
-                        },
-                    ]}
+                    data={games}
                     title="Liste des jeux publiés"
+                    page={page}
+                    totalCount={totalCount}
+                    onChangePage={onChangePage}
                 />
                 </div>
             </div>

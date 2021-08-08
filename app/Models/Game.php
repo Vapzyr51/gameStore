@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
-    protected $fillable = ['name', 'release_date'];
     use HasFactory;
-        /**
-     * Get the phone associated with the user.
-     */
-    public function phone()
-    {
-        return $this->hasMany(Tag::class);
+    protected $fillable = ['name', 'studio', 'release_date'];
+
+    
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function categories() {
+        return $this->belongsToMany(Category::class);
     }
 }
