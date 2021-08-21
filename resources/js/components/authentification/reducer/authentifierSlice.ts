@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { User } from '../../../types/user';
+
+import { checkSessionInfos, removeSessionInfos } from '../cookiesManager';
 
 
 // Define a type for the slice state
@@ -21,7 +24,7 @@ const initialState: AuthentState = {
 export const authentReducer = createSlice({
     name: 'auth', 
     initialState: { 
-        logged_in: false,
+        logged_in: checkSessionInfos(),
         id_user: null as number | null,
     }, reducers: { 
         login: (state, action: PayloadAction<User>) => { 
@@ -34,6 +37,7 @@ export const authentReducer = createSlice({
             },
         logout: (state) => {
             state.logged_in = false;
+            removeSessionInfos();
             },
     },
 });

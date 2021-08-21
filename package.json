@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.13.13",
+        "@types/js-cookie": "^2.2.7",
         "@types/react-router-dom": "^5.1.7",
         "axios": "^0.21",
         "laravel-mix": "^6.0.19",
@@ -27,6 +28,7 @@
         "@types/react-dom": "^17.0.5",
         "@types/react-redux": "^7.1.16",
         "babel-preset-react": "^6.24.1",
+        "js-cookie": "^3.0.0",
         "material-table": "^1.69.3",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
