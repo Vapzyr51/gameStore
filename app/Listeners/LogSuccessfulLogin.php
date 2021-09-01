@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\OrderShipped;
+use Illuminate\Auth\Events\Login;
 
 class LogSuccessfulLogin
 {
@@ -22,7 +22,7 @@ class LogSuccessfulLogin
      * @param  \App\Events\OrderShipped  $event
      * @return void
      */
-    public function handle(OrderShipped $event)
+    public function handle(Login $event)
     {
         // Access the order using $event->order...
     }
